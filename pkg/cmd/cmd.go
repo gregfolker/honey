@@ -12,6 +12,7 @@ import (
 var (
    TargetDir string
    Verbose bool
+   HboxFile string
 )
 
 var rootCmd = &cobra.Command{
@@ -47,5 +48,12 @@ func VerifyInputs() error {
    if err := hbox.HboxToMp4Present(TargetDir); err != nil {
       return err
    }
+
+   if file, err := hbox.GetHboxFilename(TargetDir); err != nil {
+      return err
+   } else {
+      HboxFile = file
+   }
+
    return nil
 }
