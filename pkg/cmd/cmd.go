@@ -4,6 +4,8 @@ import (
    "fmt"
    "os"
 
+   "honey/internal/hbox"
+
    "github.com/spf13/cobra"
 )
 
@@ -23,6 +25,11 @@ var rootCmd = &cobra.Command{
 func Execute() {
    AddFlags()
 
+   if err := VerifyInputs(); err != nil {
+      fmt.Fprintln(os.Stderr, err)
+      os.Exit(1)
+   }
+
    if err := rootCmd.Execute(); err != nil {
       fmt.Fprintln(os.Stderr, err)
       os.Exit(1)
@@ -34,4 +41,11 @@ func AddFlags() {
    rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "Enable verbose logging")
 
    rootCmd.MarkPersistentFlagRequired("target-dir")
+}
+
+func VerifyInputs() error {
+   if err := hbox.HboxToMp4Present(TargetDir); err != nil {
+      return err
+   }
+   return nil
 }
