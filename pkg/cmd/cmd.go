@@ -21,7 +21,7 @@ func NewRootCmd() *cobra.Command{
 
    cmd := &cobra.Command{
       Use: "honey",
-      Short: "Honey is a utility to convert video files from HBOX format to MP4 format",
+      Short: "Honey is a utility for converting video files from HBOX to MP4",
       PreRunE: func (cmd *cobra.Command, args []string) error {
          return r.VerifyInputs()
       },
