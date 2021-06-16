@@ -3,7 +3,7 @@ package log
 import (
    "strings"
 
-   "github.com/sirupsen/logrus"
+   "github.com/gregfolker/logrus"
 )
 
 var logger *logrus.Logger
@@ -12,6 +12,8 @@ func SetLoggingLevel(level string) {
    logger = logrus.New()
 
    switch strings.ToLower(level) {
+   case "trace":
+      logger.SetLevel(logrus.TraceLevel)
    case "debug":
       logger.SetLevel(logrus.DebugLevel)
    case "info":
@@ -23,7 +25,7 @@ func SetLoggingLevel(level string) {
    case "fatal":
       logger.SetLevel(logrus.FatalLevel)
    default:
-      logger.SetLevel(logrus.TraceLevel)
+      logger.SetLevel(logrus.NoneLevel)
    }
 }
 

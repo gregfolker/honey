@@ -54,7 +54,7 @@ func ExecuteRootCmd() {
 }
 
 func (r *RootCmd) AddFlags(cmd *cobra.Command) {
-   cmd.Flags().StringVarP(&verbosity, "log-level", "", "trace", "Sets the logging level of the tool")
+   cmd.Flags().StringVarP(&verbosity, "log-level", "", "none", "Sets the logging level of the tool")
    cmd.Flags().StringVarP(&r.TargetDir, "target-dir", "t", "", "Path to the directory that contains the *.hbox and *.pll files")
 }
 
