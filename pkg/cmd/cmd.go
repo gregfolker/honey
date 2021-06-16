@@ -45,7 +45,7 @@ func ExecuteRootCmd() {
 
    log.SetLoggingLevel(verbosity)
 
-   log.Trace(fmt.Sprintf("Running app with logging=%s\n", verbosity))
+   log.Trace(fmt.Sprintf("Running app with logging=%s", verbosity))
 
    if err := cmd.Execute(); err != nil {
       fmt.Fprintln(os.Stderr, err)

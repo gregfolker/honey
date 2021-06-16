@@ -26,7 +26,7 @@ func HboxToMp4Present(d string) error {
       }
 
       if f.Name() == HboxToMp4 {
-         log.Trace(fmt.Sprintf("Found %s at %s\n", f.Name(), path))
+         log.Trace(fmt.Sprintf("Found %s at %s", f.Name(), path))
          if !found {
             found = true
             return nil
@@ -50,7 +50,7 @@ func GetHboxFilename(d string) (string, error) {
       }
 
       if filepath.Ext(f.Name()) == HboxExt {
-         log.Trace(fmt.Sprintf("Found %s at %s\n", f.Name(), path))
+         log.Trace(fmt.Sprintf("Found %s at %s", f.Name(), path))
          if file == "" {
             file = f.Name()
             return nil
@@ -69,7 +69,7 @@ func RunHboxToMp4(d string, f string) error {
    cmdstr := strings.Join([]string{HboxToMp4, f, "out"}, " ")
    cmd := exec.Command("sh", "-c", cmdstr)
 
-   log.Debug(fmt.Sprintf("Running %s...\n", cmdstr))
+   log.Debug(fmt.Sprintf("Running %s...", cmdstr))
 
    if stdout, err := cmd.Output(); err != nil {
       return err
