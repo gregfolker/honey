@@ -4,15 +4,19 @@ import (
    "fmt"
    "os"
 
+   "honey/pkg/log"
    "honey/internal/hbox"
 
    "github.com/spf13/cobra"
    "github.com/pkg/errors"
 )
 
+var (
+   verbosity string
+)
+
 type RootCmd struct {
    TargetDir string
-   Verbose bool
    HboxFile string
 }
 
@@ -39,6 +43,10 @@ func NewRootCmd() *cobra.Command{
 func ExecuteRootCmd() {
    cmd := NewRootCmd()
 
+   log.SetLoggingLevel(verbosity)
+
+   log.Trace(fmt.Sprintf("Running app with logging=%s\n", verbosity))
+
    if err := cmd.Execute(); err != nil {
       fmt.Fprintln(os.Stderr, err)
       os.Exit(1)
@@ -46,8 +54,8 @@ func ExecuteRootCmd() {
 }
 
 func (r *RootCmd) AddFlags(cmd *cobra.Command) {
+   cmd.Flags().StringVarP(&verbosity, "log-level", "", "trace", "Sets the logging level of the tool")
    cmd.Flags().StringVarP(&r.TargetDir, "target-dir", "t", "", "Path to the directory that contains the *.hbox and *.pll files")
-   cmd.Flags().BoolVarP(&r.Verbose, "verbose", "v", false, "Enable verbose logging")
 }
 
 func (cmd *RootCmd) VerifyInputs() error {
