@@ -4,9 +4,8 @@ import (
    "fmt"
    "os"
 
-   "honey/pkg/log"
-   "honey/internal/hbox"
-
+   "github.com/gregfolker/honey/pkg/log"
+   "github.com/gregfolker/honey/internal/hbox"
    "github.com/spf13/cobra"
    "github.com/pkg/errors"
 )

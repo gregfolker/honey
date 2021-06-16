@@ -7,8 +7,7 @@ import (
    "os/exec"
    "strings"
 
-   "honey/pkg/log"
-
+   "github.com/gregfolker/honey/pkg/log"
    "github.com/pkg/errors"
 )
 
