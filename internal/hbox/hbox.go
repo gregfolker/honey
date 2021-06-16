@@ -4,6 +4,8 @@ import (
    "fmt"
    "path/filepath"
    "io/fs"
+   "os/exec"
+   "strings"
 
    "github.com/pkg/errors"
 )
@@ -57,4 +59,17 @@ func GetHboxFilename(d string) (string, error) {
    })
 
    return file, err
+}
+
+func RunHboxToMp4(d string, f string) error {
+   cmdstr := strings.Join([]string{HboxToMp4, f, "out"}, " ")
+   cmd := exec.Command("sh", "-c", cmdstr)
+
+   if stdout, err := cmd.Output(); err != nil {
+      return err
+   } else {
+      fmt.Println(string(stdout))
+   }
+
+   return nil
 }
