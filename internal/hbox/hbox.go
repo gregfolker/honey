@@ -31,7 +31,7 @@ func HboxToMp4Present(d string) error {
             found = true
             return nil
          } else {
-            return errors.New(fmt.Sprintf("found multiple instances of %s in %s\n", HboxToMp4, d))
+            return errors.New(fmt.Sprintf("found multiple instances of %s in %s\n", f.Name(), path))
          }
       }
 
@@ -55,7 +55,7 @@ func GetHboxFilename(d string) (string, error) {
             file = f.Name()
             return nil
          } else {
-            return errors.New(fmt.Sprintf("found multiple *%s files in %s\n", HboxExt, d))
+            return errors.New(fmt.Sprintf("found multiple *%s files in %s\n", HboxExt, path))
          }
       }
 
