@@ -49,6 +49,10 @@ func verify() error {
       return errors.New(fmt.Sprintf("No target directory specified\n"))
    }
 
+   if _, err := os.Stat(path); os.IsNotExist(err) {
+      return errors.New(fmt.Sprintf("Target directory %s does not exist\n", path))
+   }
+
    return nil
 }
 
