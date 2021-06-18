@@ -68,6 +68,8 @@ github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORR
 github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/gregfolker/logrus v1.8.5 h1:FuBWiNRLlIu8FiN05UQaj8Nn79JwxsCrjP+3t7Uuw8c=
 github.com/gregfolker/logrus v1.8.5/go.mod h1:lwRygro+XucKoa8k2/AwGJ2TZJ0GlZYJp6J2vpyO568=
+github.com/gregfolker/logrus v1.8.6-0.20210616215448-976886564916 h1:hLDngbzrgWvgSxtinwzK8nqrGH4BgGIxWSnZ/Q+yF4c=
+github.com/gregfolker/logrus v1.8.6-0.20210616215448-976886564916/go.mod h1:lwRygro+XucKoa8k2/AwGJ2TZJ0GlZYJp6J2vpyO568=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.0/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.9.0/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=

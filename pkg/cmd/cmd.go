@@ -4,13 +4,16 @@ import (
    "fmt"
    "os"
 
-   "github.com/gregfolker/honey/pkg/log"
+   //"github.com/gregfolker/honey/pkg/log"
    "github.com/gregfolker/honey/internal/hbox"
    "github.com/spf13/cobra"
    "github.com/pkg/errors"
 )
 
+// Application Flags
 var (
+   path string
+   hboxFile string
    verbosity string
 )
 
@@ -19,58 +22,50 @@ type RootCmd struct {
    HboxFile string
 }
 
-func NewRootCmd() *cobra.Command{
-   r := &RootCmd{}
-
-   cmd := &cobra.Command{
+var rootCmd = &cobra.Command {
       Use: "honey",
       Short: "Honey is a utility for converting video files from HBOX to MP4",
       PreRunE: func (cmd *cobra.Command, args []string) error {
-         return r.VerifyInputs()
+         return verify()
       },
       RunE: func(cmd *cobra.Command, args []string) error {
-         // Do stuff here
-         return nil
+         return run()
       },
-   }
-
-   r.AddFlags(cmd)
-
-   return cmd
 }
 
 func ExecuteRootCmd() {
-   cmd := NewRootCmd()
-
-   log.SetLoggingLevel(verbosity)
-
-   log.Trace(fmt.Sprintf("Running app with logging=%s", verbosity))
-
-   if err := cmd.Execute(); err != nil {
+   if err := rootCmd.Execute(); err != nil {
       fmt.Fprintln(os.Stderr, err)
       os.Exit(1)
    }
 }
 
-func (r *RootCmd) AddFlags(cmd *cobra.Command) {
-   cmd.Flags().StringVarP(&verbosity, "log-level", "", "none", "Sets the logging level of the tool")
-   cmd.Flags().StringVarP(&r.TargetDir, "target-dir", "t", "", "Path to the directory that contains the *.hbox and *.pll files")
+func init() {
+   rootCmd.PersistentFlags().StringVarP(&verbosity, "log-level", "", "none", "Sets the logging level of the tool")
+   rootCmd.PersistentFlags().StringVarP(&path, "target-dir", "t", "", "Path to the directory that contains the *.hbox and *.pll files")
 }
 
-func (cmd *RootCmd) VerifyInputs() error {
-   if cmd.TargetDir == "" {
+func verify() error {
+   if path == "" {
       return errors.New(fmt.Sprintf("No target directory specified\n"))
    }
 
-   if err := hbox.HboxToMp4Present(cmd.TargetDir); err != nil {
+   return nil
+}
+
+func run() error {
+   var filename string
+   var err error
+
+   if err = hbox.HboxToMp4Present(path); err != nil {
       return err
    }
 
-   if file, err := hbox.GetHboxFilename(cmd.TargetDir); err != nil {
+   if filename, err = hbox.GetHboxFilename(path); err != nil {
       return err
-   } else {
-      cmd.HboxFile = file
    }
+
+   fmt.Println(filename)
 
    return nil
 }
