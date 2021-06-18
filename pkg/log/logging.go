@@ -1,7 +1,6 @@
 package log
 
 import (
-   "fmt"
    "strings"
 
    "github.com/gregfolker/logrus"
@@ -31,6 +30,5 @@ func SetLoggingLevel(level string) {
 }
 
 func NewEntry(s ...interface{}) {
-   fmt.Printf("Logger is %v but I'm going to log it anyway because I'm really fucking stupid :)\n", logger.GetLevel())
    logger.Log(logger.GetLevel(), s)
 }
