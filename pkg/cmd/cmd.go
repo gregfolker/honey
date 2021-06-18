@@ -4,7 +4,6 @@ import (
    "fmt"
    "os"
 
-   //"github.com/gregfolker/honey/pkg/log"
    "github.com/gregfolker/honey/internal/hbox"
    "github.com/spf13/cobra"
    "github.com/pkg/errors"
